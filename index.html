@@ -11,24 +11,26 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">          
 </head>
 <body>
+<div class="nav">
+    <div class="nav-links">
+        <a href="http://www.dcsdancingstarsgala.com/">HOME</a>
+        <a href="http://www.dcsdancingstarsgala.com/">ABOUT</a>
+        <a href="http://www.dcsdancingstarsgala.com/#!beneficiaries/a0e0k">BENEFICIARIES</a>
+        <a href="http://www.dcsdancingstarsgala.com/">SPONSORS</a>
+        <a href="http://www.dcsdancingstarsgala.com/#!gallery/tao9g">GALLERY</a>
+        <a href="http://www.dcsdancingstarsgala.com/#!contact-us/bpkp1">CONTACT US</a>
+    </div>
+</div>
 <div id="leaderboard">
     <div style="padding:6px;">
         <div style="font-size:24px;">Leaderboard</div>
         <div id="leaderboard-content"></div>
     </div>    
 </div>
-<div id='fundraisers' class='fnd-all mdl-grid'></div>
-<dialog id='dialog' class='mdl-dialog'>
-    <div id='dialog-content'>
-        
-    </div>
-    <div class='mdl-dialog__actions'>
-        <button type='button' class='mdl-button' onclick="closeViewMore()">Close</button>
-    </div>
-</dialog>
 
+<div id='fundraisers' class='fnd-all mdl-grid'></div>
 <div id="formDialog" class="modal">
-  <button style="position:absolute; top: 20px; right: 20px;" class="modal-close mdl-button mdl-js-button mdl-button--icon" onclick="closeForm()">
+  <button style="position:absolute; top: 20px; right: 20px;" class="modal-close mdl-button mdl-js-button mdl-button--icon">
       <i class="material-icons">close</i>
   </button>
   <div id='form-dialog-content'>
@@ -39,20 +41,20 @@
   </div>
 </div>
 
-<div id="modal2" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
+<div id="dialog" class="modal">
+    <button href="#!" style="position:absolute; top: 20px; right: 20px;z-index: 2;" class="modal-close mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">close</i>
+    </button>
+  <div id='dialog-content'>
+      
   </div>
   <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-deep-purple btn-flat">Agree</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-deep-purple btn-flat">Close</a>
   </div>
 </div>
 
 <script src="js/materialize.min.js"></script>
 <script src="js/index.js"></script>
-
-<script src="https://www.dntly.com/assets/js/v1/form.js" data-donately-id="act_db6f79c68de8" data-stripe-publishable-key="pk_live_F1qPdCs0uBdkOptbCd35jLUo" data-donately-amount="250" data-donately-presets="50,100,250,1000" data-donately-duration="only_onetime" ></script>
 </body>
 </html>
 

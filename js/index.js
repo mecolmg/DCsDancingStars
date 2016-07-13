@@ -30,13 +30,10 @@ $.ajax({
         }
 
         $(document).ready(function(){
-            console.log(location.search);
-            var search = location.search.split("=");
-            if(search.indexOf('?person') != -1){
-                var permalink = search[1];
-                if(getFundraiser(permalink) !== null){
-                    openViewMore(permalink);
-                }
+            // var search = location.search.split("=");
+            var permalink = window.location.hash.substring(1);
+            if(getFundraiser(permalink) !== null){
+                openViewMore(permalink);
             }
         });
     },
@@ -152,21 +149,22 @@ function openViewMore(identifier){
     "</div>";
     $('#dialog-content').html(template);
     $('#dialog-image').load(function(){
-        $('body').addClass('dialog-open');
-        document.querySelector('#dialog').showModal();
+        // $('body').addClass('dialog-open');
+        // document.querySelector('#dialog').showModal();
+        $('#dialog').openModal();
         // $('#dialog').animate({scrollTop:$('#dialog-title').offset().top-14},0);
     });
 };
 
-function closeForm(){
-    $('body').removeClass('dialog-open');
-    document.querySelector('#formDialog').close();
-}
+// function closeForm(){
+//     $('body').removeClass('dialog-open');
+//     document.querySelector('#formDialog').close();
+// }
 
-function closeViewMore(){
-    $('body').removeClass('dialog-open');
-    document.querySelector("#dialog").close();
-}
+// function closeViewMore(){
+//     $('body').removeClass('dialog-open');
+//     document.querySelector("#dialog").close();
+// }
 
 $('#formDialog')
 .on('keydown', function(evt) {
