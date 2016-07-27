@@ -21,7 +21,7 @@ $.ajax({
         fundraisers.sort(function(a,b){
             var aVal = a.amount_raised_in_cents;
             var bVal = b.amount_raised_in_cents;
-            return ((aVal < bVal) ? -1 : ((aVal > bVal) ? 1 : 0));
+            return ((aVal > bVal) ? -1 : ((aVal < bVal) ? 1 : 0));
         });
 
         for(var i=0; i<fundraisers.length; i++){
@@ -57,7 +57,7 @@ function getWidget(fundraiser){
     var template = 
         "<div id='"+id+"' class='mdl-cell mdl-cell--4-col mdl-cell--middle'>" +
            "<div class='demo-card-square mdl-card mdl-shadow--2dp'>" +
-             "<div class='mdl-card__title mdl-card--expand' style='background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5)),url("+fundraiser.photo.medium+") top / cover;'>" +
+             "<div class='mdl-card__title mdl-card--expand' style='background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5)),url("+fundraiser.photo.original+") top / cover;'>" +
                  "<h2 class='mdl-card__title-text'>"+fundraiser.title+"</h2>" +
              "</div>" +
              "<div class='mdl-card__supporting-text'>"+fundraiser.description.replace(/\n/g,"<br>") +"</div>" +
