@@ -1,41 +1,33 @@
 var baseUrl = "https://www.dntly.com/api/v1/";
 var siteUrl = "https://www.dcsdancingstarsgala.dntly.com/api/v1/";
 var apiKey  = "b7b433ebd0c33c03e1f9cfcf63d9bd7f";
+var campaigns = [];
 var fundraisers = [];
 
 $.ajax({
     type: "GET",
-    url: "https://www.dntly.com/api/v1/fundraisers.json",
+    url: "https://dcsdancingstarsgala.dntly.com/api/v1/admin/campaigns.json",
     dataType: 'json',
     beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
     },
     success: function(data) {
-        for(var i=0; i<data.fundraisers.length; i++){
-            if(!data.fundraisers[i].archived){
-                console.log(data.fundraisers[i]);
-                fundraisers.push(data.fundraisers[i]);
-            }
+     campaigns = data.campaigns;
+      var totalRaised = 0;
+      for(var i=0; i < campaigns.length; i++){
+        if(campaigns[i].state !== 'archived'){
+          totalRaised += campaigns[i].amount_raised;
         }
-
-        fundraisers.sort(function(a,b){
-            var aVal = a.amount_raised_in_cents;
-            var bVal = b.amount_raised_in_cents;
-            return ((aVal > bVal) ? -1 : ((aVal < bVal) ? 1 : 0));
-        });
-
-        for(var i=0; i<fundraisers.length; i++){
-            $("#leaderboard-content").html($('#leaderboard-content').html()+getLeaderboard(fundraisers[i]));
-            $('#fundraisers').html($('#fundraisers').html()+getWidget(fundraisers[i]));
+        if(campaigns[i].id === 3626){
+          $('#celebrities-raised').html('$'+numberWithCommas(campaigns[i].amount_raised));
+        } else if(campaigns[i].id === 3627){
+          $('#professionals-raised').html('$'+numberWithCommas(campaigns[i].amount_raised));
+        } else if(campaigns[i].id === 3628){
+          $('#corp-raised').html('$'+numberWithCommas(campaigns[i].amount_raised));
         }
-
-        $(document).ready(function(){
-            // var search = location.search.split("=");
-            var permalink = window.location.hash.substring(1);
-            if(getFundraiser(permalink) !== null){
-                openViewMore(permalink);
-            }
-        });
+      }
+      $('.total-raised').html('$'+numberWithCommas(totalRaised));
+      console.log(campaigns);
     },
     error : function(jqXHR, textStatus, errorThrown) {
     },
@@ -48,40 +40,35 @@ function make_base_auth(user, password) {
     return 'Basic ' + hash;
 };
 
-function getLeaderboard(fundraiser){
-    return "<div class='leaderboard-item'>" + (fundraisers.indexOf(fundraiser)+1) + '. ' + fundraiser.title + " - " + fundraiser.amount_raised_formatted.slice(0,-3) + "</div>";
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function getWidget(fundraiser){
-    var id = fundraiser.id;
-    var template = 
-        "<div id='"+id+"' class='mdl-cell mdl-cell--4-col mdl-cell--middle'>" +
-           "<div class='demo-card-square mdl-card mdl-shadow--2dp'>" +
-             "<div class='mdl-card__title mdl-card--expand' style='background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5)),url("+fundraiser.photo.original+") top / cover;'>" +
-                 "<h2 class='mdl-card__title-text'>"+fundraiser.title+"</h2>" +
-             "</div>" +
-             "<div class='mdl-card__supporting-text'>"+fundraiser.description.replace(/\n/g,"<br>") +"</div>" +
-             "<div class='mdl-progress-container mdl-card--border'>" +
-               "<div class='progress-text'>" +
-                   "<span class='funds-raised'>"+
-                        fundraiser.amount_raised_formatted.slice(0,-3)+
-                        "/"+
-                        fundraiser.goal_formatted.slice(0,-3)+
-                   "</span><span> Raised</span>" +
-               "</div>" +
-               "<div id='progress-"+id+"' class='mdl-progress'>"+
-                    "<div class='progressbar bar bar1' style='width: "+(fundraiser.amount_raised/fundraiser.goal*100)+"%;'></div>"+
-                    "<div class='bufferbar bar bar2' style='width: 100%;'></div>"+
-               "</div>" +
-             "</div>" +
-             "<div class='mdl-card__actions mdl-card--border'>" +
-               "<button id='view-more-" + id+"' class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openViewMore("+id+")'>View More</button>" +
-               "<button id='show-dialog-"+id+"' class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openDialog("+id+")'>Vote Now</button>" +
-             "</div>" +
-           "</div>" +
-       "</div>";
-    return template;
-};
+$.ajax({
+    type: "GET",
+    url: "https://www.dntly.com/api/v1/fundraisers.json",
+    dataType: 'json',
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
+    },
+    success: function(data) {
+        for(var i=0; i<data.fundraisers.length; i++){
+            if(!data.fundraisers[i].archived){
+                fundraisers.push(data.fundraisers[i]);
+            }
+        }
+
+        $(document).ready(function(){
+            var permalink = window.location.hash.substring(1);
+            if(getFundraiser(permalink) !== null){
+                openViewMore(permalink);
+            }
+        });
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+    },
+    timeout: 120000
+});
 
 function getFundraiser(id){
     for(var i=0; i<fundraisers.length; i++){
@@ -150,22 +137,9 @@ function openViewMore(identifier){
     "</div>";
     $('#dialog-content').html(template);
     $('#dialog-image').load(function(){
-        // $('body').addClass('dialog-open');
-        // document.querySelector('#dialog').showModal();
         $('#dialog').openModal();
-        // $('#dialog').animate({scrollTop:$('#dialog-title').offset().top-14},0);
     });
 };
-
-// function closeForm(){
-//     $('body').removeClass('dialog-open');
-//     document.querySelector('#formDialog').close();
-// }
-
-// function closeViewMore(){
-//     $('body').removeClass('dialog-open');
-//     document.querySelector("#dialog").close();
-// }
 
 $('#formDialog')
 .on('keydown', function(evt) {

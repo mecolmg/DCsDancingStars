@@ -2,7 +2,7 @@ html{
     background: #2f2e2e;
 }
 body{
-    height: 1000px;
+    /*height: 1000px;*/
     overflow-y: auto;
 }
 .demo-card-square.mdl-card {
@@ -120,8 +120,20 @@ body{
 }
 
 .nav-links a {
-    color: #C6C6C6 !important;
+    color: #C6C6C6;
     font-size: 17px;
     line-height:50px;
     margin: 0 10px;
+}
+
+.row {
+    margin-bottom:0;
+}
+
+.card-panel {
+    margin-bottom:0.5rem;
+}
+
+.dropdown-content {
+    min-width:175px;
 }

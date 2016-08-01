@@ -107,6 +107,7 @@ function openDialog(id){
                 "data-donately-amount='250' " + 
                 "data-donately-presets='50,100,250,500,1000' " +
                 "data-donately-fundraiser-id='"+fnd.id+"' " +
+                "donately-anonymous='true'" +
           "></scr"+"ipt>"; 
     $('#form-dialog-content').html(form);
     $('#form-dialog-title').html(fnd.title);
@@ -124,7 +125,7 @@ function openViewMore(identifier){
     var template = 
     "<div class='mdl-grid'>" +
         "<div class='mdl-cell mdl-cell--8-col'>" +
-            "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+", Celebrity Dancer</h4>" + 
+            "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+"</h4>" + 
             "<p>" + fnd.description.replace(/\n/g,"<br>") + "</p>" +
         "</div>" +
         "<div class='mdl-cell mdl-cell--4-col'>" +
