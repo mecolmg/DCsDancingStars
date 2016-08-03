@@ -17,6 +17,23 @@ $.ajax({
                 fundraisers.push(data.fundraisers[i]);
             }
         }
+        var order = ["javier-buentello","katherine-hayes","jason-rushing"];
+        var newSort = [];
+        for(var i=0; i<order.length; i++){
+          for(var j=0; j<fundraisers.length; j++){
+            if(fundraisers[j].permalink === order[i]){
+              newSort.push(fundraisers[j]);
+            }
+          }
+        }
+
+        for(var i=0; i<fundraisers.length; i++){
+          if(newSort.indexOf(fundraisers[i]) === -1){
+            newSort.push(fundraisers[i]);
+          }
+        }
+
+        fundraisers = newSort;
 
         fundraisers.sort(function(a,b){
             var aVal = a.amount_raised_in_cents;
