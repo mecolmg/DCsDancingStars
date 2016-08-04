@@ -2,6 +2,7 @@ var baseUrl = "https://www.dntly.com/api/v1/";
 var siteUrl = "https://www.dcsdancingstarsgala.dntly.com/api/v1/";
 var apiKey  = "b7b433ebd0c33c03e1f9cfcf63d9bd7f";
 var fundraisers = [];
+var donations = [];
 
 $.ajax({
     type: "GET",
@@ -35,6 +36,31 @@ $.ajax({
             if(getFundraiser(permalink) !== null){
                 openViewMore(permalink);
             }
+        });
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+    },
+    timeout: 120000
+});
+
+$.ajax({
+    type: "GET",
+    url: "https://www.dntly.com/api/v1/donations.json",
+    dataType: 'json',
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
+    },
+    success: function(data) {
+        for(var i=0; i<data.donations.length; i++){
+            if(true){
+                donations.push(data.donations[i]);
+            }
+        }
+
+        donations.sort(function(a,b){
+            var aVal = a.amount_raised_in_cents;
+            var bVal = b.amount_raised_in_cents;
+            return ((aVal > bVal) ? -1 : ((aVal < bVal) ? 1 : 0));
         });
     },
     error : function(jqXHR, textStatus, errorThrown) {
@@ -122,6 +148,10 @@ function openViewMore(identifier){
     $('#dialog').css('width','90%');
     var fnd = getFundraiser(identifier);
     var id = fnd.id;
+    var fundDonations = [];
+    for(var i=0; i<donations.length; i++){
+      if(donations[i].fundraiser_id === id) fundDonations.push(donations[i]);
+    }
     var template = 
     "<div class='mdl-grid'>" +
         "<div class='mdl-cell mdl-cell--8-col'>" +
@@ -146,6 +176,16 @@ function openViewMore(identifier){
               "</div>" +
             "</div>" +
           "<button id='show-dialog-"+id+"' class='mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openDialog("+id+")'>Vote Now</button>" +
+          "<div style='margin-top:20px;background:black; border-radius:10px; width: 100%;color:white;padding:10px;'>" +
+            "<b>Donor Leaderboard</b>";
+
+    for(var i=1; i<=fundDonations.length; i++){
+      console.log(fundDonations[i-1]);
+      template += "<p>" + i + ". " + fundDonations[i-1].account_title + " (" + fundDonations[i-1].amount_formatted + ")</p>";
+    }
+
+    template = template +
+          "</div>" +
         "</div>" +
     "</div>";
     $('#dialog-content').html(template);
