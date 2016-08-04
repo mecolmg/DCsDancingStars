@@ -187,3 +187,7 @@ body{
     padding: 0 6px;
     margin: 5px 0;
 }
+
+.fnd-all {
+    max-width:1200px;
+}
