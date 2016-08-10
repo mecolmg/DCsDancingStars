@@ -42,11 +42,8 @@ function numberWithCommas(x) {
 
 $.ajax({
     type: "GET",
-    url: "https://www.dntly.com/api/v1/fundraisers.json",
+    url: cors + host + "/fundraisers",
     dataType: 'json',
-    beforeSend: function (xhr) {
-        xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
-    },
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
             if(!data.fundraisers[i].archived){
