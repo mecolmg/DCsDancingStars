@@ -79,7 +79,7 @@ function getWidget(fundraiser){
     var template = 
         "<div id='"+id+"' class='mdl-cell mdl-cell--4-col mdl-cell--middle'>" +
            "<div class='demo-card-square mdl-card mdl-shadow--2dp'>" +
-             "<div class='mdl-card__title mdl-card--expand' style='background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5)),url("+fundraiser.photo.original+") top / cover;'>" +
+             "<div class='mdl-card__title mdl-card--expand' onclick='openViewMore("+id+")' style='background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5)),url("+fundraiser.photo.original+") top / cover;'>" +
                  "<h2 class='mdl-card__title-text'>"+fundraiser.title+"</h2>" +
              "</div>" +
              "<div class='mdl-card__supporting-text'>"+fundraiser.description.replace(/\n/g,"<br>") +"</div>" +
@@ -172,7 +172,7 @@ function openViewMore(identifier){
               "</div>" +
             "</div>" +
           "<button id='show-dialog-"+id+"' class='mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openDialog("+id+")'>Vote Now</button>" +
-          "<div style='margin-top:20px;background:black; border-radius:10px; width: 100%;color:white;padding:10px;'>" +
+          "<div style='display:none;margin-top:20px;background:black; border-radius:10px; width: 100%;color:white;padding:10px;'>" +
             "<b>Donor Leaderboard</b>";
 
     for(var i=1; i<=fundDonations.length; i++){
