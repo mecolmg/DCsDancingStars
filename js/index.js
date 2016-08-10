@@ -1,16 +1,12 @@
-var baseUrl = "https://www.dntly.com/api/v1/";
-var siteUrl = "https://www.dcsdancingstarsgala.dntly.com/api/v1/";
-var apiKey  = "b7b433ebd0c33c03e1f9cfcf63d9bd7f";
+var cors = "http://cors.io/?u=";
+var host = "http://api.dcsdancingstarsgala.com";
 var fundraisers = [];
 var donations = [];
 
 $.ajax({
     type: "GET",
-    url: "https://www.dntly.com/api/v1/fundraisers.json",
+    url: cors + host + "/fundraisers",
     dataType: 'json',
-    beforeSend: function (xhr) {
-        xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
-    },
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
             if(!data.fundraisers[i].archived){
@@ -43,30 +39,30 @@ $.ajax({
     timeout: 120000
 });
 
-$.ajax({
-    type: "GET",
-    url: "https://www.dntly.com/api/v1/donations.json",
-    dataType: 'json',
-    beforeSend: function (xhr) {
-        xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
-    },
-    success: function(data) {
-        for(var i=0; i<data.donations.length; i++){
-            if(true){
-                donations.push(data.donations[i]);
-            }
-        }
+// $.ajax({
+//     type: "GET",
+//     url: "https://www.dntly.com/api/v1/donations.json",
+//     dataType: 'json',
+//     beforeSend: function (xhr) {
+//         xhr.setRequestHeader('Authorization', make_base_auth('b7b433ebd0c33c03e1f9cfcf63d9bd7f', ''));
+//     },
+//     success: function(data) {
+//         for(var i=0; i<data.donations.length; i++){
+//             if(true){
+//                 donations.push(data.donations[i]);
+//             }
+//         }
 
-        donations.sort(function(a,b){
-            var aVal = a.amount_raised_in_cents;
-            var bVal = b.amount_raised_in_cents;
-            return ((aVal > bVal) ? -1 : ((aVal < bVal) ? 1 : 0));
-        });
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-    },
-    timeout: 120000
-});
+//         donations.sort(function(a,b){
+//             var aVal = a.amount_raised_in_cents;
+//             var bVal = b.amount_raised_in_cents;
+//             return ((aVal > bVal) ? -1 : ((aVal < bVal) ? 1 : 0));
+//         });
+//     },
+//     error : function(jqXHR, textStatus, errorThrown) {
+//     },
+//     timeout: 120000
+// });
 
 function make_base_auth(user, password) {
     var tok = user + ':' + password;
