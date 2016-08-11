@@ -9,7 +9,7 @@ var fundraisers = [];
 
 $.ajax({
     type: "GET",
-    url: "https://www.dntly.com/api/v1/campaigns.json",
+    url: "https://dcsdancingstarsgala.dntly.com/api/v1/admin/campaigns.json",
     dataType: 'json',
     beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', make_base_auth('7ebe3a1ac2e4596d7cb942948eda82a1', ''));
@@ -37,26 +37,25 @@ $.ajax({
     timeout: 120000
 });
 
-function make_base_auth(user, password) {
-    var tok = user + ':' + password;
-    var hash = btoa(tok);
-    return 'Basic ' + hash;
-};
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 $.ajax({
     type: "GET",
-    url: cors + host + "/fundraisers",
+    url: "https://www.dntly.com/api/v1/fundraisers.json",
     dataType: 'json',
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', make_base_auth('7ebe3a1ac2e4596d7cb942948eda82a1', ''));
+    },
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
             if(!data.fundraisers[i].archived){
                 fundraisers.push(data.fundraisers[i]);
             }
         }
+
+        fundraisers.sort(function(a,b){
+            var aVal = a.amount_raised_in_cents;
+            var bVal = b.amount_raised_in_cents;
+            return ((aVal > bVal) ? -1 : ((aVal < bVal) ? 1 : 0));
+        });
 
         $(document).ready(function(){
             var permalink = window.location.hash.substring(1);
@@ -69,6 +68,39 @@ $.ajax({
     },
     timeout: 120000
 });
+
+function make_base_auth(user, password) {
+    var tok = user + ':' + password;
+    var hash = btoa(tok);
+    return 'Basic ' + hash;
+};
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// $.ajax({
+//     type: "GET",
+//     url: cors + host + "/fundraisers",
+//     dataType: 'json',
+//     success: function(data) {
+//         for(var i=0; i<data.fundraisers.length; i++){
+//             if(!data.fundraisers[i].archived){
+//                 fundraisers.push(data.fundraisers[i]);
+//             }
+//         }
+
+//         $(document).ready(function(){
+//             var permalink = window.location.hash.substring(1);
+//             if(getFundraiser(permalink) !== null){
+//                 openViewMore(permalink);
+//             }
+//         });
+//     },
+//     error : function(jqXHR, textStatus, errorThrown) {
+//     },
+//     timeout: 120000
+// });
 
 function getFundraiser(id){
     for(var i=0; i<fundraisers.length; i++){
