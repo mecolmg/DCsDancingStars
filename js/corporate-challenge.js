@@ -1,11 +1,18 @@
+var baseUrl = "https://www.dntly.com/api/v1/";
+var siteUrl = "https://www.dcsdancingstarsgala.dntly.com/api/v1/";
+var apiKey  = "7ebe3a1ac2e4596d7cb942948eda82a1";
+
 var cors = "http://cors.io/?u=";
 var host = "http://api.dcsdancingstarsgala.com";
 var fundraisers = [];
 
 $.ajax({
     type: "GET",
-    url: cors + host + "/fundraisers",
+    url: "https://www.dntly.com/api/v1/fundraisers.json",
     dataType: 'json',
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', make_base_auth('7ebe3a1ac2e4596d7cb942948eda82a1', ''));
+    },
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
             if(!data.fundraisers[i].archived && data.fundraisers[i].campaign_id == 3628){
