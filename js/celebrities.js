@@ -4,7 +4,7 @@ var fundraisers = [];
 
 $.ajax({
     type: "GET",
-    url: cors + host + "/fundraisers",
+    url: host + "/fundraisers",
     dataType: 'json',
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
