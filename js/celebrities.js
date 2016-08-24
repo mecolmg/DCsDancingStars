@@ -8,7 +8,6 @@ $.ajax({
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
             if(!data.fundraisers[i].archived && data.fundraisers[i].campaign_id == 3626){
-                console.log(data.fundraisers[i]);
                 fundraisers.push(data.fundraisers[i]);
             }
         }
@@ -164,8 +163,13 @@ function openViewMore(identifier){
                 "<b style='font-size:24px;line-height:normal;'>Donor Leaderboard</b>";
 
             for(var i=1; i<=donations.length; i++){
-              console.log(donations[i-1]);
-              donorTemplate += "<div>" + i + ". " + donations[i-1].full_name_or_email + " (" + donations[i-1].amount_formatted + ")</div>";
+              donorTemplate += "<div>" + i + ". ";
+              if(!donations[i-1].anonymous) {
+                donorTemplate += donations[i-1].full_name_or_email;
+              } else {
+                donorTemplate += "Anonymous";
+              }
+              donorTemplate += " (" + donations[i-1].amount_formatted + ")</div>";
             }
 
             donorTemplate += "</div>";
