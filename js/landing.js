@@ -91,7 +91,7 @@ function openDialog(id){
                 "data-donately-amount='250' " + 
                 "data-donately-presets='50,100,250,500,1000' " +
                 "data-donately-fundraiser-id='"+fnd.id+"' " +
-                "donately-anonymous='true'" +
+                "data-donately-anonymous='true'" +
           "></scr"+"ipt>"; 
     $('#form-dialog-content').html(form);
     $('#form-dialog-title').html(fnd.title);
