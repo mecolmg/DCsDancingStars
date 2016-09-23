@@ -165,7 +165,11 @@ function openViewMore(identifier){
             for(var i=1; i<=donations.length; i++){
               donorTemplate += "<div>" + i + ". ";
               if(!donations[i-1].anonymous) {
-                donorTemplate += donations[i-1].full_name_or_email;
+                if(donations[i-1].on_behalf_of === null || donations[i-1].on_behalf_of === ""){
+                  donorTemplate += donations[i-1].full_name_or_email;
+                } else {
+                  donorTemplate += donations[i-1].on_behalf_of;
+                }
               } else {
                 donorTemplate += "Anonymous";
               }
