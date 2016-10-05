@@ -87,6 +87,7 @@ function getFundraiser(id){
 
 function openDialog(id){
     var fnd = getFundraiser(id);
+    var id = (fnd.id == 7489 ? 8079 : fnd.id);
     $('#formDialog').css('width','450px');
     var form = 
         "<h4 id='form-dialog-title' class='mdl-dialog__title' style='padding: 12px 6px;'></h4>" + 
@@ -100,7 +101,7 @@ function openDialog(id){
                 "data-donately-duration='only_onetime' " +
                 "data-donately-amount='250' " + 
                 "data-donately-presets='50,100,250,500,1000' " +
-                "data-donately-fundraiser-id='"+fnd.id+"' " +
+                "data-donately-fundraiser-id='"+id+"' " +
                 "data-donately-anonymous='true'" +
           "></scr"+"ipt>"; 
     $('#form-dialog-content').html(form);
@@ -189,55 +190,6 @@ function openViewMore(identifier){
         $('#dialog').openModal();
     });
 };
-
-// function openViewMore(identifier){
-//     $('#dialog').css('width','90%');
-//     var fnd = getFundraiser(identifier);
-//     var id = fnd.id;
-//     var template = 
-//     "<div class='mdl-grid'>" +
-//         "<div class='mdl-cell mdl-cell--8-col'>" +
-//             "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+"</h4>" + 
-//             "<p>" + fnd.description.replace(/\n/g,"<br>") + "</p>" +
-//         "</div>" +
-//         "<div class='mdl-cell mdl-cell--4-col'>" +
-//             "<div style='width:100%; background: url("+fnd.photo.original+") center/cover;max-height:500px'>"+
-//                 "<img id='dialog-image' style='width:100%;opacity:0;' src='"+fnd.photo.original+"'>"+
-//             "</div>" +
-//             "<div class='mdl-progress-container mdl-card--border'>" +
-//               "<div class='progress-text'>" +
-//                   "<span class='funds-raised'>"+
-//                        fnd.amount_raised_formatted.slice(0,-3)+
-//                        "/"+
-//                        fnd.goal_formatted.slice(0,-3)+
-//                   "</span><span> Raised</span>" +
-//               "</div>" +
-//               "<div id='progress-"+id+"' class='mdl-progress'>"+
-//                    "<div class='progressbar bar bar1' style='width: "+(fnd.amount_raised/fnd.goal*100)+"%;'></div>"+
-//                    "<div class='bufferbar bar bar2' style='width: 100%;'></div>"+
-//               "</div>" +
-//             "</div>" +
-//           "<button id='show-dialog-"+id+"' class='mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openDialog("+id+")'>Vote Now</button>" +
-//         "</div>" +
-//     "</div>";
-//     $('#dialog-content').html(template);
-//     $('#dialog-image').load(function(){
-//         // $('body').addClass('dialog-open');
-//         // document.querySelector('#dialog').showModal();
-//         $('#dialog').openModal();
-//         // $('#dialog').animate({scrollTop:$('#dialog-title').offset().top-14},0);
-//     });
-// };
-
-// function closeForm(){
-//     $('body').removeClass('dialog-open');
-//     document.querySelector('#formDialog').close();
-// }
-
-// function closeViewMore(){
-//     $('body').removeClass('dialog-open');
-//     document.querySelector("#dialog").close();
-// }
 
 $('#formDialog')
 .on('keydown', function(evt) {
