@@ -130,7 +130,7 @@ function openViewMore(identifier){
                    "<div class='bufferbar bar bar2' style='width: 100%;'></div>"+
               "</div>" +
             "</div>" +
-          // "<button id='show-dialog-"+id+"' class='mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openDialog("+id+")'>Vote Now</button>" +
+          "<button id='show-dialog-"+id+"' class='mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect' onclick='openDialog("+id+")'>Vote Now</button>" +
           "<div style='border-radius:10px;margin-top:20px;overflow:hidden;' id='donation-container'>" +
           "</div>" +
         "</div>" +
