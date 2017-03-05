@@ -1,4 +1,4 @@
-var host = "http://api.dcsdancingstarsgala.com/";
+var host = "http://dcs-dancing-stars-gala.azurewebsites.net/";
 var fundraisers = [];
 
 $.ajax({

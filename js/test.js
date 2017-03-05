@@ -3,7 +3,7 @@ var siteUrl = "https://www.dcsdancingstarsgala.dntly.com/api/v1/";
 var apiKey  = "7ebe3a1ac2e4596d7cb942948eda82a1";
 
 var cors = "http://cors.io/?u=";
-var host = "http://api.dcsdancingstarsgala.com/";
+var host = "http://dcs-dancing-stars-gala.azurewebsites.net/";
 var fundraisers = [];
 var donations = [];
 
