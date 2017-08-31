@@ -7,7 +7,7 @@ $.ajax({
     dataType: 'json',
     success: function(data) {
         for(var i=0; i<data.fundraisers.length; i++){
-            if(!data.fundraisers[i].archived && data.fundraisers[i].campaign_id == 5184){
+            if(!data.fundraisers[i].archived && data.fundraisers[i].campaign_id == 5324){
                 fundraisers.push(data.fundraisers[i]);
             }
         }
@@ -95,7 +95,7 @@ function openDialog(id){
                 "type='text/javascript' " +
                 "data-donately-address='true' " +
                 "data-donately-id='act_db6f79c68de8' " +
-                "data-donately-campaign-id='5184' " +
+                "data-donately-campaign-id='5324' " +
                 "data-stripe-publishable-key='pk_live_F1qPdCs0uBdkOptbCd35jLUo' " +
                 "data-donately-duration='only_onetime' " +
                 "data-donately-amount='250' " +
@@ -106,8 +106,6 @@ function openDialog(id){
     $('#form-dialog-content').html(form);
     $('#form-dialog-title').html(fnd.title);
     $(document).ready(function(){
-        // $('body').addClass('dialog-open');
-        // document.querySelector('#formDialog').showModal();
         $('#formDialog').openModal();
     });
 };
