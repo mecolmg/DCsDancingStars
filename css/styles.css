@@ -89,8 +89,8 @@ body{
     overflow: auto;
 }
 
-#leaderboard-content::-webkit-scrollbar { 
-    display: none; 
+#leaderboard-content::-webkit-scrollbar {
+    display: none;
 }
 
 .leaderboard-item {
@@ -191,4 +191,14 @@ body{
 
 .fnd-all {
     max-width:1200px;
+}
+
+a.social-button {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.social-button img {
+    width: 39px;
+    height: 39px;
 }
