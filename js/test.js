@@ -2,8 +2,8 @@ var baseUrl = "https://www.dntly.com/api/v1/";
 var siteUrl = "https://www.dcsdancingstarsgala.dntly.com/api/v1/";
 var apiKey  = "7ebe3a1ac2e4596d7cb942948eda82a1";
 
-var cors = "http://cors.io/?u=";
-var host = "http://dcs-dancing-stars-gala.azurewebsites.net/";
+var cors = "https://cors.io/?u=";
+var host = "https://dcs-dancing-stars-gala.azurewebsites.net/";
 var fundraisers = [];
 var donations = [];
 
@@ -80,7 +80,7 @@ function getLeaderboard(fundraiser){
 
 function getWidget(fundraiser){
     var id = fundraiser.id;
-    var template = 
+    var template =
         "<div id='"+id+"' class='mdl-cell mdl-cell--4-col mdl-cell--middle'>" +
            "<div class='demo-card-square mdl-card mdl-shadow--2dp'>" +
              "<div class='mdl-card__title mdl-card--expand' onclick='openViewMore("+id+")' style='background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5)),url("+fundraiser.photo.original+") top / cover;'>" +
@@ -120,21 +120,21 @@ function getFundraiser(id){
 function openDialog(id){
     var fnd = getFundraiser(id);
     $('#formDialog').css('width','450px');
-    var form = 
-        "<h4 id='form-dialog-title' class='mdl-dialog__title' style='padding: 12px 6px;'></h4>" + 
+    var form =
+        "<h4 id='form-dialog-title' class='mdl-dialog__title' style='padding: 12px 6px;'></h4>" +
         "<scr"+"ipt " +
-                "src='https://www.dntly.com/assets/js/v1/form.js' " + 
+                "src='https://www.dntly.com/assets/js/v1/form.js' " +
                 "type='text/javascript' " +
                 "data-donately-address='true' " +
                 "data-donately-id='act_db6f79c68de8' " +
                 "data-donately-campaign-id='"+fnd.campaign_id+"' " +
                 "data-stripe-publishable-key='pk_live_F1qPdCs0uBdkOptbCd35jLUo' " +
                 "data-donately-duration='only_onetime' " +
-                "data-donately-amount='250' " + 
+                "data-donately-amount='250' " +
                 "data-donately-presets='50,100,250,500,1000' " +
                 "data-donately-fundraiser-id='"+fnd.id+"' " +
                 "data-donately-anonymous='true'" +
-          "></scr"+"ipt>"; 
+          "></scr"+"ipt>";
     $('#form-dialog-content').html(form);
     $('#form-dialog-title').html(fnd.title);
     $(document).ready(function(){
@@ -152,10 +152,10 @@ function openViewMore(identifier){
     for(var i=0; i<donations.length; i++){
       if(donations[i].fundraiser_id === id) fundDonations.push(donations[i]);
     }
-    var template = 
+    var template =
     "<div class='mdl-grid'>" +
         "<div class='mdl-cell mdl-cell--8-col'>" +
-            "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+"</h4>" + 
+            "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+"</h4>" +
             "<p>" + fnd.description.replace(/\n/g,"<br>") + "</p>" +
         "</div>" +
         "<div class='mdl-cell mdl-cell--4-col'>" +
@@ -213,7 +213,7 @@ $('#formDialog')
         $('body').removeClass('dialog-open');
         document.querySelector("#formDialog").close();
         evt.stopPropagation();
-    }                
+    }
 });
 
 $('#dialog')
@@ -222,7 +222,7 @@ $('#dialog')
         $('body').removeClass('dialog-open');
         document.querySelector("#dialog").close();
         evt.stopPropagation();
-    }                
+    }
 });
 
 $(document).ready(function() {
