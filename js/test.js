@@ -130,8 +130,8 @@ function openDialog(id){
                 "data-donately-campaign-id='"+fnd.campaign_id+"' " +
                 "data-stripe-publishable-key='pk_live_F1qPdCs0uBdkOptbCd35jLUo' " +
                 "data-donately-duration='only_onetime' " +
-                "data-donately-amount='250' " +
-                "data-donately-presets='50,100,250,500,1000' " +
+                "data-donately-amount='500' " +
+                "data-donately-presets='250,500,1000,1500,2000' " +
                 "data-donately-fundraiser-id='"+fnd.id+"' " +
                 "data-donately-anonymous='true'" +
           "></scr"+"ipt>";
