@@ -137,7 +137,7 @@ function openViewMore(identifier){
     var template =
     "<div class='mdl-grid'>" +
         "<div class='mdl-cell mdl-cell--8-col'>" +
-            "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+ ",<br>Fred Astaire Fairfax Professional</h4>" +
+            "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>" + fnd.title + "</h4>" +
             "<p>" + fnd.description.replace(/\n/g,"<br>") + "</p>" +
         "</div>" +
         "<div class='mdl-cell mdl-cell--4-col'>" +
@@ -214,7 +214,7 @@ function openViewMore(identifier){
 //     var template =
 //     "<div class='mdl-grid'>" +
 //         "<div class='mdl-cell mdl-cell--8-col'>" +
-//             "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>"+fnd.title+",<br>Fred Astaire Fairfax Professional</h4>" +
+//             "<h4 id='dialog-title' class='mdl-dialog__title' style='padding: 12px 0px;'>" + fnd.title + "</h4>" +
 //             "<p>" + fnd.description.replace(/\n/g,"<br>") + "</p>" +
 //         "</div>" +
 //         "<div class='mdl-cell mdl-cell--4-col'>" +
